@@ -9,8 +9,8 @@ CORS(app, resources={r"/*": {"origins": "https://raynae-commerce.netlify.app/"}}
 
 # --- Path ke database (fix di folder 'database')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, 'database', 'orders.db')
-print("📍 File database digunakan:", DB_PATH)
+db_path = os.path.join(BASE_DIR, 'orders.db')
+print("📍 File database digunakan:", db_path)
 
 if not os.path.exists(os.path.join(BASE_DIR, 'database')):
     os.makedirs(os.path.join(BASE_DIR, 'database'))
@@ -18,7 +18,7 @@ if not os.path.exists(os.path.join(BASE_DIR, 'database')):
 
 # --- Fungsi koneksi DB
 def get_db_connection():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(db_path, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     return conn
 
