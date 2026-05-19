@@ -1,5 +1,5 @@
 // Load data orders
-fetch("http://127.0.0.1:5050/orders")
+fetch("https://rayna-backend-update.vercel.app/orders")
   .then(res => res.json())
   .then(data => {
     const tbody = document.querySelector("#orderTable tbody");
@@ -17,7 +17,7 @@ fetch("http://127.0.0.1:5050/orders")
   });
 
 // Load data user & tombol aksi
-fetch("http://127.0.0.1:5050/users")
+fetch("https://rayna-backend-update.vercel.app/users")
   .then(res => res.json())
   .then(data => {
     const tbody = document.querySelector("#userTable tbody");
@@ -41,7 +41,7 @@ fetch("http://127.0.0.1:5050/users")
   });
 
 function updateStatus(userId, status) {
-  fetch(`http://127.0.0.1:5050/update-status/${userId}`, {
+  fetch(`https://rayna-backend-update.vercel.app/update-status/${userId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
