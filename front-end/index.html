@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rayna | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/index.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1><img src="images/logo.png">Rayna Homemade</h1>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#products">Produk</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="cart.html">Keranjang</a></li>
+    </ul>
+  </nav>
+
+  <!-- Produk Section -->
+  <section class="product-section" id="products">
+    <h2>Produk Kami</h2>
+    <div class="product-grid">
+      <!-- Produk Card 1 -->
+      <div class="product-card">
+        <img src="images/puding mangga.png" alt="Puding Mangga">
+        <h3>Puding Mangga</h3>
+        <p class="desc">Puding mangga yang di selimuti oleh saus keju dan di berikan beberapa toping buah mangga.</p>
+        <p class="price">Rp 65.000</p>
+        <a href="payment.html" class="buy-now">Beli Sekarang</a>
+        <button class="add-cart" data-name="puding-mangga" data-price="65000">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <!-- Produk Card 2 -->
+      <div class="product-card">
+        <img src="images/puding coklat.jpg" alt="Puding Coklat">
+        <h3>Puding Coklat</h3>
+        <p class="desc">Puding coklat dengan sensasi lumer nya krim vanila di mulut berpadu dengan coklat.</p>
+        <p class="price">Rp 65.000</p>
+        <a href="payment.html" class="buy-now">Beli Sekarang</a>
+        <button class="add-cart" data-name="puding-coklat" data-price="65000">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <!-- Produk Card 3 -->
+      <div class="product-card">
+        <img src="images/puding vanilla fruit.png" alt="Vanilla fruit">
+        <h3>Puding vanila fruit </h3>
+        <p class="desc">Puding vanila yang di kombinasikan dengan toping buah dan hiasan.</p>
+        <p class="price">Rp 65.000</p>
+        <a href="payment.html" class="buy-now">Beli Sekarang</a>
+        <button class="add-cart" data-name="puding-vanilla-fruit" data-price="65000">
+          Tambah ke Keranjang
+        </button>
+      </div>
+
+      <!-- Produk Card 4 -->
+      <div class="product-card">
+        <img src="images/lasagna.jpg" alt="Lasagna">
+        <h3>Lasagna</h3>
+        <p class="desc">Makanan khas Italia yang berasal dari pasta dan di buat di dalam oven.(ukuran 700ml)</p>
+        <p class="price">Rp 50.000</p>
+        <a href="payment.html" class="buy-now">Beli Sekarang</a>
+        <button class="add-cart" data-name="lasagna-700ml" data-price="50000">
+          Tambah ke Keranjang
+        </button>
+        <button onclick="pilihUkuran('Lasagna')">Pilih Ukuran</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-us" id="about">
+    <h2>Tentang Kami</h2>
+    <p>Rayna Homemade adalah bisnis makanan rumahan yang dibuat dengan cinta dan bahan terbaik. Kami hadir untuk memberi pengalaman rasa yang autentik dan segar</p>
+    <p>Kami Juga selalu menghargai dan terus memperbaiki dari setiap penilaian jujur seorang customer agar kami dapat berkembang lebih baik lagi.</p>
+    <p>Selamat Menikmati</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Rayna Homemade. All rights reserved.
+  </footer>
+
+  <!-- Notifikasi Add to Cart -->
+  <div class="notif" id="notif">✅ Ditambahkan ke keranjang!</div>
+  <script src="script/index.js"></script>
+</body>
+</html>

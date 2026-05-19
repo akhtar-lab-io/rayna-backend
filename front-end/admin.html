@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rayna Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/admin.css">  
+</head>
+<body>
+  <!-- Cek Login Admin -->
+   <script>
+    const isLoggedIn =localStorage.getItem("isAdminLoggedIn");
+    if (!isLoggedIn || isLoggedIn !== "true") {
+      window.location.href = "admin-login.html";
+    }
+   </script>
+  <div class="container">
+    <h1>📦 Admin Panel — Pesanan Masuk</h1>
+
+    <button onclick="logout()" style="float: right; margin-bottom: 10px;">Logout</button>
+
+    <h2>🛍️ Data Produk yang Dipesan</h2>
+    <table id="orderTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Produk</th>
+          <th>Qty</th>
+          <th>Total</th>
+          <th>Tanggal</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>🙋‍♂️ Data User / Pembeli</h2>
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Alamat</th>
+          <th>Metode</th>
+          <th>No WA</th>
+          <th>Waktu Kirim</th>
+          <th>Tanggal</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="script/admin.js"></script>
+  <script>
+    function logout() {
+      localStorage.removeItem("isAdminLogged");
+      window.location.href = "admin-login.html";
+    }
+  </script>
+
+
+
+  <script>
+    // Load data orders
+    fetch("http://127.0.0.1:5050/orders")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#orderTable tbody");
+        data.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.product_name}</td>
+            <td>${item.quantity}</td>
+            <td>Rp ${item.total_amount}</td>
+            <td>${item.created_at}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+
+    // Load data user
+    fetch("http://127.0.0.1:5050/users")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#userTable tbody");
+        data.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.nama_lengkap}</td>
+            <td>${item.alamat_lengkap}</td>
+            <td>${item.metode_pembayaran}</td>
+            <td>${item.nomor_whatsapp}</td>
+            <td>${item.waktu_pengiriman}</td>
+            <td>${item.created_at}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      });
+  </script>
+  <script src="script/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!-- payment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rayna | Pembayaran</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style/payment.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Form Pembayaran</h1>
+    <form id="paymentForm">
+      <label>Nama Lengkap</label>
+      <input type="text" id="nama" required />
+
+      <label>Alamat Lengkap</label>
+      <textarea id="alamat" required></textarea>
+
+      <label>Metode Pembayaran</label>
+      <select id="metode" required>
+        <option value="">Pilih</option>
+        <option value="Transfer">Transfer</option>
+        <option value="COD">COD</option>
+      </select>
+
+      <label>Nomor WhatsApp</label>
+      <input type="text" id="wa" required />
+
+      <label>Waktu Pengiriman</label>
+      <select id="waktu" required>
+        <option value="">Pilih</option>
+        <option value="Pagi">Pagi</option>
+        <option value="Siang">Siang</option>
+        <option value="Sore">Sore</option>
+      </select>
+
+      <button type="submit">Kirim</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+    
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    
+      const data = {
+        nama_lengkap: document.getElementById("nama").value,
+        alamat_lengkap: document.getElementById("alamat").value,
+        metode_pembayaran: document.getElementById("metode").value,
+        nomor_whatsapp: document.getElementById("wa").value,
+        waktu_pengiriman: document.getElementById("waktu").value,
+        items: cartItems
+      };
+    
+      fetch("https://caaabfb4-f4ed-4cc0-9e17-30c26e33be7f-00-2q5idvq68h83h.pike.replit.dev/payment", 
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === "success") {
+          alert("✅ Data berhasil dikirim!");
+          localStorage.removeItem("cart"); 
+        } else {
+          alert("❌ Gagal: " + res.message);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("❌ Error saat mengirim data!");
+      });
+    });
+    </script>
+
+<script>
+  document.getElementById("paymentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value;
+    const alamat = document.getElementById("alamat").value;
+    const wa = document.getElementById("wa").value;
+    const metode = document.getElementById("metode").value;
+    const waktu = document.getElementById("waktu").value;
+
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const data = {
+      nama_lengkap: nama,
+      alamat_lengkap: alamat,
+      metode_pembayaran: metode,
+      nomor_whatsapp: wa,
+      waktu_pengiriman: waktu,
+      items: cartItems
+    };
+
+    fetch("http://127.0.0.1:5050/payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      if (res.status === "success") {
+        localStorage.removeItem("cart");
+
+        if (metode.toUpperCase() === "TRANSFER") {
+          const pesan = `Halo Admin Rayna Homemade! 👋%0ASaya baru saja melakukan pemesanan.%0A%0A📌 *Detail Pembeli*:%0A👤 Nama: ${nama}%0A📍 Alamat: ${alamat}%0A📱 No WA: ${wa}%0A📦 Waktu Kirim: ${waktu}%0A💳 Metode: Transfer Bank%0A%0ASiap melakukan pembayaran via transfer. Mohon informasi nomor rekeningnya 🙏`;
+          window.location.href = `https://wa.me/6285703217508?text=${pesan}`; 
+        } else {
+          alert("✅ Pesanan dengan metode COD berhasil disimpan!");
+        }
+      } else {
+        alert("❌ Gagal menyimpan data: " + res.message);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      alert("❌ Terjadi kesalahan saat mengirim data!");
+    });
+  });
+</script>
+</body>
+</html>

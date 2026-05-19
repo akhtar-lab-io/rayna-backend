@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Admin</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fff5ea;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #d35400;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login Admin</h2>
+    <form id="loginForm">
+      <input type="password" id="password" placeholder="Password Admin" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const inputPass = document.getElementById("password").value;
+
+      const realPassword = "R4yn4_2020"; // buat ganti pw
+
+      if (inputPass === realPassword) {
+        localStorage.setItem("isAdminLoggedIn", "true");
+        window.location.href = "admin.html";
+      } else {
+        alert("Password salah bro 🥲");
+      }
+    });
+  </script>
+</body>
+</html>
