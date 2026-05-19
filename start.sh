@@ -1,2 +1,2 @@
-#!/bin/bash
-uvicorn app_sqlite:app --host 0.0.0.0 --port 8000
+#buat jalanin server render
+gunicorn app_sqlite:app 
