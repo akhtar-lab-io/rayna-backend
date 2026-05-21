@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 # --- Setup Flask
 app = Flask(__name__, static_url_path='', static_folder='script')
+
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # --- Path ke database (fix di folder 'database')
