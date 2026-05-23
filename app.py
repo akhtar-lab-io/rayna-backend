@@ -9,12 +9,8 @@ CORS(app, resources={r"/*": {"origins": "https://rayna-homemade.netlify.app"}})
 
 # --- Path ke database (fix di folder 'database')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, 'orders.db')
+db_path = '/tmp/orders.db'
 print("📍 File database digunakan:", db_path)
-
-if not os.path.exists(os.path.join(BASE_DIR, 'database')):
-    os.makedirs(os.path.join(BASE_DIR, 'database'))
-
 
 # --- Fungsi koneksi DB
 def get_db_connection():
@@ -55,6 +51,8 @@ def create_tables():
 
     conn.commit()
     conn.close()
+
+create_tables()
 
 # --- Home
 @app.route('/')
