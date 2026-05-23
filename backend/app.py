@@ -56,7 +56,7 @@ def create_tables():
 create_tables() 
 
 # --- Home
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
     return "Rayna API jalan boss!"
 
