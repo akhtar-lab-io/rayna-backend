@@ -2,15 +2,19 @@ body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
   background-color: #fffef7;
   margin: 0;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
 .container {
   max-width: 500px;
+  width: 100%;
   margin: 40px auto;
   padding: 30px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 h1 {
@@ -36,6 +40,8 @@ input, textarea, select {
   border-radius: 8px;
   margin-bottom: 16px;
   font-size: 15px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 button {
@@ -47,4 +53,43 @@ button {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  width: 100%;
+  transition: background-color 0.3s ease;
 }
+
+button:hover {
+  background-color: #d35400;
+}
+
+/* =====================
+    Responsive phone screen (max 480px)
+    ===================== */
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+
+      .container {
+        margin: 16px auto;
+        padding: 20px 16px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      input, textarea, select {
+        font-size: 14px;
+        padding: 9px;
+      }
+
+      button {
+        font-size: 15px;
+        padding: 11px 0;
+      }
+    }
+
+
+    
