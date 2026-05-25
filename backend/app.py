@@ -9,7 +9,7 @@ CORS(app, resources={r"/*": {"origins": "https://rayna-homemade.netlify.app"}})
 
 # --- Setup Supabase
 # Kedua variable ini diisi di Vercel Environment Variables
-SUPABASE_URL = os.environ.get(" https://xnvjxzdrnuofdlkfgnth.supabase.co")
+SUPABASE_URL = os.environ.get("https://xnvjxzdrnuofdlkfgnth.supabase.co")
 SUPABASE_KEY = os.environ.get("sb_publishable_PH0xaMAlcOB6X9cVt5Jf2g__gujtIp3")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
