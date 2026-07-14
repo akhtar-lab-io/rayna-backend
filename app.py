@@ -5,7 +5,10 @@ import os
 
 # --- Setup Flask
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://rayna-homemade.netlify.app"}})
+CORS(app, resources={r"/*": {"origins":[
+                     "https://rayna-homemade.netlify.app",
+                       "http://localhost:3000",
+                       ]}})
 
 # --- Setup Supabase
 # Kedua variable ini diisi di Vercel Environment Variables
@@ -17,7 +20,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 # --- Home
 @app.route('/', methods=['GET'])
 def home():
-    return "Rayna API jalan boss!"
+    return "API nya jalan"
 
 # --- Approval / Update Status Order
 @app.route('/update-status/<int:user_id>', methods=['PUT'])
@@ -122,3 +125,18 @@ def get_users():
 # --- Start App (local only, Vercel gak pake ini)
 if __name__ == '__main__':
     app.run(port=5050, debug=True)
+
+# --- End point baru buat ngambil data produk dari database Supabase
+@app.route('/products', methods=['GET'])
+def get_products():
+    try:
+        result = supabase.table("products") \
+            .select("*") \
+            .order("created_at", desc=True) \
+            .execute()
+        return jsonify(result.data), 200
+    except Exception as e:
+        print("❌ Error di /products:", e)
+        return jsonify({"status": "error", "message": str(e)}), 500
+    
+    
