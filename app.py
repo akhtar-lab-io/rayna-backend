@@ -8,6 +8,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins":[
                      "https://rayna-homemade.netlify.app",
                        "http://localhost:3000",
+                      "https://rayna-react-project.vercel.app",
                        ]}})
 
 # --- Setup Supabase
